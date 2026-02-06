@@ -1,0 +1,53 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "py-rate-guard"
+version = "0.1.0"
+description = "Production-grade, Redis-backed API Rate Limiting & Throttling library"
+readme = "README.md"
+authors = [{ name = "Deepak Dubey" }]
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Intended Audience :: Developers",
+]
+requires-python = ">=3.9"
+dependencies = [
+    "redis>=4.5.0",
+    "pydantic>=2.0.0",
+    "prometheus-client>=0.17.0",
+]
+
+[project.optional-dependencies]
+fastapi = ["fastapi", "httpx"]
+django = ["django"]
+dev = [
+    "pytest",
+    "pytest-asyncio",
+    "pytest-cov",
+    "tox",
+    "black",
+    "isort",
+    "mypy",
+    "fakeredis[lua]",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["py_rate_guard*"]
+
+[tool.black]
+line-length = 100
+
+[tool.isort]
+profile = "black"
+line_length = 100
